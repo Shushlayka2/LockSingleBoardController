@@ -16,7 +16,7 @@ namespace LockSingleBoardController
 
         public void Start()
         {
-            using (StreamReader sr = new StreamReader("Scripts\\InitLedScript.txt", Encoding.Default))
+            using (StreamReader sr = new StreamReader("Scripts/InitLedScript.txt", Encoding.Default))
             {
                 string line;
                 while ((line = sr.ReadLine()) != null)

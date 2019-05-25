@@ -39,7 +39,7 @@ namespace LockSingleBoardController.Services
 
         protected void Open()
         {
-            using (StreamReader sr = new StreamReader("Scripts\\OpenLedScript.txt", Encoding.Default))
+            using (StreamReader sr = new StreamReader("Scripts/OpenLedScript.txt", Encoding.Default))
             {
                 string line;
                 while ((line = sr.ReadLine()) != null)
@@ -52,7 +52,7 @@ namespace LockSingleBoardController.Services
 
         protected void Close()
         {
-            using (StreamReader sr = new StreamReader("Scripts\\CloseLedScript.txt", Encoding.Default))
+            using (StreamReader sr = new StreamReader("Scripts/CloseLedScript.txt", Encoding.Default))
             {
                 string line;
                 while ((line = sr.ReadLine()) != null)
