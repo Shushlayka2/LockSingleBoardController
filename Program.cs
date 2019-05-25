@@ -1,38 +1,25 @@
-﻿using System;
-using System.Threading;
-using System.Device.Gpio;
+﻿using LockSingleBoardController.Extensions;
+using Unity;
 
 namespace LockSingleBoardController
 {
     public class Program
     {
-        public int GPIO = 7;
+        public IUnityContainer Container { get; } = new UnityContainer();
 
         static void Main(string[] args)
         {
             new Program().Run();
         }
 
+        public Program()
+        {
+            Container.AddExtension(new ContainerExtension());
+        }
+
         public void Run()
         {
-            using (var controller = new GpioController())
-            {
-                controller.OpenPin(GPIO, PinMode.Output);
-
-                Console.CancelKeyPress += (object sender, ConsoleCancelEventArgs eventArgs) =>
-                {
-                    controller.Dispose();
-                };
-
-                while (true)
-                {
-                    controller.Write(GPIO, PinValue.High);
-                    Thread.Sleep(1000);
-                    controller.Write(GPIO, PinValue.Low);
-                    Thread.Sleep(200);
-                }
-
-            }
+            Container.Resolve<IStartup>().Start();
         }
     }
 }

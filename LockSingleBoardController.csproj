@@ -2,12 +2,15 @@
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="IoT.Device.Bindings" Version="0.1.0-prerelease.19171.3" />
+    <PackageReference Include="Microsoft.Azure.Devices.Client" Version="1.20.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.5.0" />
     <PackageReference Include="System.Device.Gpio" Version="0.1.0-prerelease.19171.3" />
+    <PackageReference Include="Unity" Version="5.10.3" />
   </ItemGroup>
 
 </Project>
