@@ -19,6 +19,7 @@ namespace LockSingleBoardController
 
         public void Start()
         {
+            InitLEDLight();
             while (true)
             {
             }
