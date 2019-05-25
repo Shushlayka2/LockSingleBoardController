@@ -7,14 +7,24 @@ namespace LockSingleBoardController
 {
     public class Startup : IStartup
     {
+        private SettingsService settingsService;
+
         protected IoTService IoTService;
 
-        public Startup(IoTService ioTService)
+        public Startup(IoTService _IoTService, SettingsService settingsService)
         {
-            IoTService = ioTService;
+            IoTService = _IoTService;
+            this.settingsService = settingsService;
         }
 
         public void Start()
+        {
+            while (true)
+            {
+            }
+        }
+
+        private void InitLEDLight()
         {
             using (StreamReader sr = new StreamReader("Scripts/InitLedScript.txt", Encoding.Default))
             {
@@ -24,8 +34,27 @@ namespace LockSingleBoardController
                     line.Bash();
                 }
             }
-            while (true)
+            if (settingsService.State == "Opened")
             {
+                using (StreamReader sr = new StreamReader("Scripts/OpenLedScript.txt", Encoding.Default))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        line.Bash();
+                    }
+                }
+            }
+            else if (settingsService.State == "Closed")
+            {
+                using (StreamReader sr = new StreamReader("Scripts/CloseLedScript.txt", Encoding.Default))
+                {
+                    string line;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        line.Bash();
+                    }
+                }
             }
         }
     }
