@@ -25,17 +25,20 @@ namespace LockSingleBoardController.Services
             var isExecuted = GPIOControlService.ChangeLockState();
             if (isExecuted)
             {
-                return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(settingsService.State), 200));
+                var result = "{\"result\":\"" + settingsService.State + "\"}";
+                return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 200));
             }
             else
             {
-                return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes("Internal exception"), 500));
+                var result = "{\"result\":\"Internal exception\"}";
+                return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 500));
             }
         }
 
         protected Task<MethodResponse> SendLockState(MethodRequest methodRequest, object userContext)
         {
-            return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(settingsService.State), 200));
+            var result = "{\"result\":\"" + settingsService.State + "\"}";
+            return Task.FromResult(new MethodResponse(Encoding.UTF8.GetBytes(result), 200));
         }
     }
 }
