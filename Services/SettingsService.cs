@@ -1,4 +1,7 @@
-﻿using System.Configuration;
+﻿using System.Collections.Generic;
+using System.Configuration;
+using System.IO;
+using System.Linq;
 
 namespace LockSingleBoardController.Services
 {
@@ -21,6 +24,25 @@ namespace LockSingleBoardController.Services
             get
             {
                 return ConfigurationManager.AppSettings["DeviceConnectionString"];
+            }
+        }
+
+        public List<string> TrustedDevices { get; set; }
+
+        public SettingsService(IEncoder encoder)
+        {
+            if (File.Exists("list.txt"))
+            {
+                using (var sr = new StreamReader("list.txt"))
+                {
+                    var list = sr.ReadToEnd();
+                    list = encoder.Decrypt(list);
+                    TrustedDevices = list.Split("\n").ToList();
+                }
+            }
+            else
+            {
+                TrustedDevices = new List<string>();
             }
         }
     }

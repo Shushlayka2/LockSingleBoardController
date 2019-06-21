@@ -12,7 +12,8 @@ namespace LockSingleBoardController.Extensions
             Container.AddExtension(new Diagnostic());
 #endif
             Container.RegisterType<IGPIOControlService, GPIOControlService>();
-            Container.RegisterType<SettingsService>();
+            Container.RegisterType<SettingsService>(TypeLifetime.Singleton);
+            Container.RegisterType<IEncoder, Encoder>();
             Container.RegisterType<IoTService>();
             Container.RegisterType<IStartup, Startup>();
         }
