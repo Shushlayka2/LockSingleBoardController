@@ -37,7 +37,7 @@ namespace LockSingleBoardController
             }
             if (settingsService.State == "Opened")
             {
-                using (StreamReader sr = new StreamReader("Scripts/OpenLedScript.txt", Encoding.Default))
+                using (StreamReader sr = new StreamReader("Scripts/OpenLockScript.txt", Encoding.Default))
                 {
                     string line;
                     while ((line = sr.ReadLine()) != null)
@@ -48,7 +48,7 @@ namespace LockSingleBoardController
             }
             else if (settingsService.State == "Closed")
             {
-                using (StreamReader sr = new StreamReader("Scripts/CloseLedScript.txt", Encoding.Default))
+                using (StreamReader sr = new StreamReader("Scripts/CloseLockScript.txt", Encoding.Default))
                 {
                     string line;
                     while ((line = sr.ReadLine()) != null)
