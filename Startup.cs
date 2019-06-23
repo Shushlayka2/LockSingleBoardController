@@ -4,16 +4,14 @@ namespace LockSingleBoardController
 {
     public class Startup : IStartup
     {
-        private SettingsService settingsService;
-
         protected IoTService IoTService;
 
         protected IGPIOControlService GPIOControlService;
 
-        public Startup(IoTService _IoTService, IGPIOControlService _GPIOControlService, SettingsService settingsService)
+        public Startup(IoTService _IoTService, IGPIOControlService _GPIOControlService)
         {
             IoTService = _IoTService;
-            this.settingsService = settingsService;
+            GPIOControlService = _GPIOControlService;
         }
 
         public void Start()
