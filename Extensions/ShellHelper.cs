@@ -24,5 +24,23 @@ namespace LockSingleBoardController.Extensions
             process.WaitForExit();
             return result;
         }
+
+        public static void PythonBash(this string cmd)
+        {
+            var escapedArgs = cmd.Replace("\"", "\\\"");
+
+            var process = new Process()
+            {
+                StartInfo = new ProcessStartInfo
+                {
+                    FileName = "/usr/bin/python",
+                    Arguments = $"\"{escapedArgs}\"",
+                    UseShellExecute = false,
+                    CreateNoWindow = true,
+                }
+            };
+            process.Start();
+            process.WaitForExit();
+        }
     }
 }

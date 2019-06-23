@@ -12,10 +12,10 @@ namespace LockSingleBoardController.Services
         private DeviceClient deviceClient;
         private SettingsService settingsService;
 
-        protected GPIOControlService GPIOControlService;
+        protected IGPIOControlService GPIOControlService;
         protected IEncoder Encoder;
 
-        public IoTService(SettingsService settingsService, GPIOControlService _GPIOControlService, IEncoder encoder)
+        public IoTService(SettingsService settingsService, IGPIOControlService _GPIOControlService, IEncoder encoder)
         {
             this.settingsService = settingsService;
             GPIOControlService = _GPIOControlService;
